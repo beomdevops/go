@@ -77,7 +77,6 @@ func getRsaParsePubKey(bite_key []byte) (*rsa.PublicKey, error) {
 	if err != nil {
 		return nil, err
 	}
-
 	return pub_key, nil
 
 }

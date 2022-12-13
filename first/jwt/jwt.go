@@ -25,12 +25,12 @@ func (c *MyClaims) BuildName(name string) *MyClaims {
 	return c
 }
 
-func GenJwt() string {
+func GenJwt() (string, error) {
 	var private_key, err = GetRsaPrivateKey()
 
 	if err != nil {
 		fmt.Println(err)
-		panic(err)
+		return "nil", err
 	}
 
 	var c = NewMyClaims().BuildName("park").BuildUesrId(1)
@@ -40,13 +40,13 @@ func GenJwt() string {
 
 	if err != nil {
 		fmt.Println(err)
-		panic(err)
+		return "nil", err
 	}
 	fmt.Println(signedAuthToken)
 	fmt.Println("---------------------------------------------")
 	//ParseJwt(signedAuthToken)
 
-	return signedAuthToken
+	return signedAuthToken, nil
 }
 
 func ParseJwt(token_str string) {
@@ -54,6 +54,7 @@ func ParseJwt(token_str string) {
 	token, _ := jwt.ParseWithClaims(token_str, claims, func(token *jwt.Token) (interface{}, error) {
 		return token, nil
 	})
+
 	fmt.Println(token)
 	fmt.Println("-------------------------------------------------------------")
 	fmt.Println(claims.Name)
