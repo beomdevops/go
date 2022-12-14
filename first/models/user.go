@@ -4,8 +4,9 @@ import "gorm.io/gorm"
 
 type User struct {
 	gorm.Model
-	ID   uint `gorm:"primaryKey; AUTO_INCREMENT"`
-	Name string
+	ID          uint `gorm:"primaryKey; AUTO_INCREMENT"`
+	Name        string
+	CreditCards []CreditCard
 }
 
 func NewUser(name string) *User {

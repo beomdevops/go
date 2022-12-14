@@ -16,7 +16,7 @@ func New() fiber.Handler {
 		// 	return c.Status(400).SendString("jwks")
 		// }
 		//fmt.Println(header)
-		fmt.Println("this is middleware")
+		fmt.Println("")
 		return c.Next()
 	}
 }
